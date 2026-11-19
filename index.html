@@ -26,6 +26,7 @@
   --orange-500:#FF8800; --orange-400:#FFB384; --orange-300:#FFC6A6;
   --red-500:#F04452; --red-600:#EE3848; --green-500:#007738; --navy-900:#010A25;
   --brown-900:#602B19; --brown-700:#72463F; --brown-500:#925E4D; --brown-400:#C47D63;
+  --purple-500:#A234C7; --purple-700:#8222A2; --purple-300:#C770E4; --teal-500:#18A5A5; --teal-700:#0C8585; --teal-300:#58C7C7;
   --fg-tertiary:rgba(1,10,37,.58); --fg-quaternary:rgba(1,10,37,.28);
   --line-subtle:rgba(0,0,0,.08); --bg-overlay:rgba(0,0,0,.56); --press-overlay:rgba(0,0,0,.26);
   --dark-blue-500:#3485FA; --dark-blue-50:#202C4D;
@@ -83,6 +84,10 @@
   --fb-press:var(--press-overlay);
   --fb-on-brand:var(--white);
   --fb-wash-alpha:.12;
+  --fb-av-purple-bg:rgba(162,52,199,var(--fb-wash-alpha));--fb-av-purple-fg:var(--purple-700);
+  --fb-av-teal-bg:rgba(24,165,165,var(--fb-wash-alpha));--fb-av-teal-fg:var(--teal-700);
+  --fb-av-yellow-bg:rgba(255,195,66,.32);--fb-av-yellow-fg:var(--brown-900);
+  --fb-av-brown-bg:rgba(196,125,99,.18);--fb-av-brown-fg:var(--brown-700);
   --fb-host-chrome:var(--grey-50);
 }
 @media (prefers-color-scheme: dark){
@@ -97,6 +102,7 @@
     --fb-brand:var(--dark-blue-500);--fb-brand-weak:var(--dark-blue-50);--fb-danger:var(--dark-red-500);
     --fb-illust:var(--dark-yellow-500);--fb-success:#2FA060;--fb-neutral:var(--dark-grey-500);
     --fb-press:rgba(255,255,255,.14);--fb-wash-alpha:.22;--fb-host-chrome:var(--dark-grey-50);
+    --fb-av-purple-fg:var(--purple-300);--fb-av-teal-fg:var(--teal-300);--fb-av-yellow-bg:rgba(255,195,66,.22);--fb-av-yellow-fg:var(--yellow-500);--fb-av-brown-bg:rgba(196,125,99,.24);--fb-av-brown-fg:var(--brown-400);
     --shadow-1:0 1px 2px rgba(0,0,0,.3);--shadow-2:0 4px 12px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.3);
     --shadow-3:0 12px 32px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.4);--shadow-toast:0 8px 24px rgba(0,0,0,.5);
   }
@@ -112,6 +118,7 @@
   --fb-brand:var(--dark-blue-500);--fb-brand-weak:var(--dark-blue-50);--fb-danger:var(--dark-red-500);
   --fb-illust:var(--dark-yellow-500);--fb-success:#2FA060;--fb-neutral:var(--dark-grey-500);
   --fb-press:rgba(255,255,255,.14);--fb-wash-alpha:.22;--fb-host-chrome:var(--dark-grey-50);
+    --fb-av-purple-fg:var(--purple-300);--fb-av-teal-fg:var(--teal-300);--fb-av-yellow-bg:rgba(255,195,66,.22);--fb-av-yellow-fg:var(--yellow-500);--fb-av-brown-bg:rgba(196,125,99,.24);--fb-av-brown-fg:var(--brown-400);
   --shadow-1:0 1px 2px rgba(0,0,0,.3);--shadow-2:0 4px 12px rgba(0,0,0,.35),0 1px 2px rgba(0,0,0,.3);
   --shadow-3:0 12px 32px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.4);--shadow-toast:0 8px 24px rgba(0,0,0,.5);
 }
@@ -281,9 +288,10 @@ button.badge-status,button.badge{border:0;background:none;cursor:pointer;font-fa
 .avatar img{width:100%;height:100%;object-fit:cover}
 .avatar.l{width:44px;height:44px;border-radius:14px;font-size:15px}
 .avatar.s{width:24px;height:24px;font-size:10px}
-.avatar.c2{background:rgba(var(--rgb-green),var(--fb-wash-alpha));color:rgb(var(--rgb-green))}
-.avatar.c3{background:rgba(var(--rgb-orange),var(--fb-wash-alpha));color:rgb(var(--rgb-orange))}
-.avatar.c4{background:rgba(var(--rgb-red),var(--fb-wash-alpha));color:rgb(var(--rgb-red))}
+.avatar.av-purple{background:var(--fb-av-purple-bg);color:var(--fb-av-purple-fg)}
+.avatar.av-teal{background:var(--fb-av-teal-bg);color:var(--fb-av-teal-fg)}
+.avatar.av-yellow{background:var(--fb-av-yellow-bg);color:var(--fb-av-yellow-fg)}
+.avatar.av-brown{background:var(--fb-av-brown-bg);color:var(--fb-av-brown-fg)}
 .avatar.c5{background:var(--fb-fill-secondary);color:var(--fb-text-secondary)}
 
 /* marker number pill */
@@ -430,15 +438,21 @@ symbol .body{fill:var(--fb-illust)}symbol .feat{fill:var(--fb-illust-face)}symbo
 .mk-drawing{border:2px dashed var(--fb-brand);background:rgba(49,130,246,.08);border-radius:8px;position:absolute;pointer-events:none}
 .mk-tip{position:absolute;z-index:3;transform:translate(-50%,calc(-100% - 40px));background:var(--grey-900);color:#fff;font-size:13px;padding:8px 12px;border-radius:10px;box-shadow:var(--shadow-2);max-width:260px;pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mk-tip::after{content:"";position:absolute;left:50%;bottom:-5px;width:10px;height:10px;background:var(--grey-900);transform:translateX(-50%) rotate(45deg)}
-.annot-bar{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px;background:var(--grey-900);color:#fff;border-radius:var(--radius-full);box-shadow:var(--shadow-3);max-width:calc(100vw - 32px);animation:dialogIn var(--dur-slow) var(--ease-out)}
-.annot-bar .seg{background:rgba(255,255,255,.12)}
-.annot-bar .seg button{color:rgba(255,255,255,.7);height:30px}
-.annot-bar .seg button.is-active{background:#fff;color:var(--grey-900)}
-.annot-bar .hint{font-size:13px;font-weight:500;white-space:nowrap}
-.annot-bar .cnt{font-variant-numeric:tabular-nums;opacity:.8;font-size:13px}
-.annot-bar .btn-s{height:32px}
-.annot-bar .btn-ghost{color:#fff}
-@media (max-width:560px){.annot-bar .hint{display:none}}
+.annot-bar{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:6px;height:52px;padding:0 8px 0 6px;background:var(--grey-900);color:#fff;border-radius:var(--radius-full);box-shadow:var(--shadow-3);max-width:calc(100vw - 32px);animation:dialogIn var(--dur-slow) var(--ease-out)}
+.annot-bar .seg{background:rgba(255,255,255,.1);border-radius:var(--radius-full);padding:3px;flex:none}
+.annot-bar .seg button{height:34px;padding:0 14px;border-radius:var(--radius-full);color:rgba(255,255,255,.64);display:inline-flex;align-items:center;gap:6px}
+.annot-bar .seg button:hover:not(.is-active){color:#fff}
+.annot-bar .seg button.is-active{background:#fff;color:var(--grey-900);box-shadow:none}
+.annot-bar .div{width:1px;height:20px;background:rgba(255,255,255,.16);margin:0 6px;flex:none}
+.annot-bar .hint{display:inline-flex;align-items:center;gap:6px;min-width:0;padding-right:8px;font-size:14px;font-weight:500;color:rgba(255,255,255,.8);white-space:nowrap}
+.annot-bar .hint.set{color:#fff}
+.annot-bar .hint .ic{width:16px;height:16px;flex:none;color:var(--fb-brand);stroke-width:2.25}
+.annot-bar .btn{height:36px;padding:0 14px;border-radius:var(--radius-full);font-size:14px;font-weight:600;flex:none}
+.annot-bar .btn-ghost{color:rgba(255,255,255,.8)}
+.annot-bar .btn-ghost:hover{background:rgba(255,255,255,.1);color:#fff}
+.annot-bar .btn-primary{padding:0 18px}
+.annot-bar .btn-primary:disabled{opacity:1;background:rgba(255,255,255,.12);color:rgba(255,255,255,.36)}
+@media (max-width:560px){.annot-bar .hint,.annot-bar .div{display:none}}
 
 /* ============ WIDGET ============ */
 .fab{position:fixed;right:calc(24px + env(safe-area-inset-right,0px));bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:50;height:56px;padding:0 22px 0 18px;border-radius:var(--radius-full);background:var(--fb-brand);color:#fff;border:0;display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;box-shadow:var(--shadow-3);transition:transform var(--dur-base) var(--ease),opacity var(--dur-base) var(--ease)}
@@ -449,21 +463,34 @@ symbol .body{fill:var(--fb-illust)}symbol .feat{fill:var(--fb-illust-face)}symbo
 #fbw{position:fixed;top:0;right:0;bottom:0;z-index:50;width:min(420px,100vw);display:flex;flex-direction:column;background:var(--fb-surface-float);box-shadow:var(--shadow-3);border-left:1px solid var(--fb-line);transform:translateX(100%);transition:transform var(--dur-slow) var(--ease-out);padding-top:env(safe-area-inset-top,0px);padding-right:env(safe-area-inset-right,0px)}
 #fbw.is-open{transform:none}
 @media (min-width:720px){#fbw{top:0;bottom:0}}
-.fbw-head{display:flex;align-items:center;gap:6px;height:56px;padding:0 10px 0 16px;border-bottom:1px solid var(--fb-line);flex:none}
+.fbw-head{display:flex;align-items:center;gap:2px;height:56px;padding:0 10px 0 16px;border-bottom:1px solid var(--fb-line);flex:none}
 .fbw-head .ttl{flex:1;min-width:0;display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700;letter-spacing:-.01em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.fbw-head .icon-btn{width:36px;height:36px;border-radius:10px}
+.fbw-head .icon-btn .ic{width:20px;height:20px;stroke-width:1.75}
+.fbw-head .icon-btn[aria-pressed="true"]{background:var(--fb-brand-weak);color:var(--fb-brand)}
+.fbw-head .head-div{width:1px;height:16px;background:var(--fb-line);margin:0 6px;flex:none}
 .fbw-head .ttl .mark{width:26px;height:26px;border-radius:8px;background:var(--fb-brand);display:inline-flex;align-items:center;justify-content:center;flex:none}
 .fbw-head .ttl .mark svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .fbw-body{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;display:flex;flex-direction:column}
 .fbw-foot{flex:none;position:relative;padding:12px 16px calc(16px + env(safe-area-inset-bottom,0px));background:var(--fb-surface-float)}
 .fbw-foot::before{content:"";position:absolute;left:0;right:0;top:-28px;height:28px;background:linear-gradient(to bottom,rgba(255,255,255,0),var(--fb-surface-float));pointer-events:none}
 .fbw-foot > .btn{width:100%}
-.fbw-sync{display:flex;align-items:center;gap:6px;padding:6px 16px;font-size:11px;color:var(--fb-text-tertiary);border-bottom:1px solid var(--fb-line);background:var(--fb-fill-tertiary)}
-.fbw-sync i{width:7px;height:7px;border-radius:50%;background:var(--fb-success);flex:none}
-.fbw-sync i.off{background:var(--fb-warning)}
-.fbw-sync .who{margin-left:auto;display:flex;align-items:center;gap:6px}
-.fbw-sync select{border:0;background:transparent;font-size:11px;font-weight:600;color:var(--fb-text-secondary);padding:0}
-.fbw-toolbar{display:flex;flex-direction:column;gap:16px;padding:16px 16px 20px;border-bottom:1px solid var(--fb-line);position:sticky;top:0;background:var(--fb-surface-float);z-index:2}
+.fbw-sync{display:flex;align-items:center;gap:6px;height:40px;padding:0 12px 0 16px;font-size:12px;color:var(--fb-text-tertiary);border-bottom:1px solid var(--fb-line);background:var(--fb-fill-tertiary);flex:none}
+.fbw-sync i{width:6px;height:6px;border-radius:50%;background:var(--fb-success);flex:none}
+.fbw-sync i.off{background:var(--fb-text-quaternary)}
+.fbw-sync .who{margin-left:auto;display:flex;align-items:center;gap:6px;min-width:0;font-size:12px;color:var(--fb-text-secondary)}
+.fbw-sync .who .avatar.s{width:20px;height:20px;font-size:9px}
+.fbw-sync .persona{position:relative;display:inline-flex;align-items:center;gap:2px;min-width:0;height:26px;padding:0 4px 0 6px;border-radius:6px;font-weight:600;color:var(--fb-text-secondary)}
+.fbw-sync .persona:hover{background:var(--fb-fill-secondary)}
+.fbw-sync .persona:focus-within{outline:2px solid var(--fb-brand);outline-offset:1px}
+.fbw-sync .persona .pv{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fbw-sync .persona select{position:absolute;inset:0;width:100%;opacity:0;cursor:pointer;font-size:12px}
+.fbw-sync .persona .ic{width:14px;height:14px;color:var(--fb-text-tertiary);flex:none}
+.fbw-sync .role-tag{height:18px;padding:0 6px;border-radius:5px;background:var(--fb-brand-weak);color:var(--fb-brand);font-size:11px;font-weight:600;display:inline-flex;align-items:center;flex:none}
+.fbw-toolbar{display:flex;flex-direction:column;gap:12px;padding:16px;border-bottom:1px solid var(--fb-line);position:sticky;top:0;background:var(--fb-surface-float);z-index:2}
 .fbw-toolbar .row{display:flex;gap:8px;align-items:center}
+.fbw-toolbar .seg{height:40px;box-sizing:border-box;min-width:0}
+.fbw-toolbar .seg button{height:34px;padding:0 8px;min-width:0}
 .fbw-list{display:flex;flex-direction:column}
 .fbw-list .list-row{padding:14px 16px}
 .fbw-list .list-row .no-pill{align-self:flex-start}
@@ -545,12 +572,12 @@ details.fold[open] summary .ic{transform:rotate(180deg)}
 .memo .linked{font-size:11px;color:var(--fb-brand);display:inline-flex;align-items:center;gap:4px}
 .edit-inline{display:flex;flex-direction:column;gap:8px}
 .edit-inline .row{display:flex;gap:6px;justify-content:flex-end}
-.result{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:48px 24px}
-.result .ok{width:56px;height:56px;border-radius:50%;background:var(--fb-success);display:flex;align-items:center;justify-content:center}
-.result .ok svg{width:28px;height:28px;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.result h3{font-size:20px;font-weight:700;letter-spacing:-.015em}
-.result p{color:var(--fb-text-tertiary);font-size:14px}
-.result .face{width:64px;height:64px;margin-top:8px}
+.result{display:flex;flex-direction:column;align-items:center;text-align:center;padding:56px 20px 24px}
+.result .ok{width:56px;height:56px;border-radius:50%;background:var(--fb-brand);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.result .ok svg{width:28px;height:28px;stroke:var(--fb-on-brand);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.result h3{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.35}
+.result p{margin-top:6px;color:var(--fb-text-tertiary);font-size:15px;line-height:1.5}
+.foot-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 
 /* ============ ADMIN ============ */
 #view-admin{min-height:100%;background:var(--fb-bg-grey);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px calc(24px + env(safe-area-inset-bottom,0px))}
@@ -567,7 +594,52 @@ details.fold[open] summary .ic{transform:rotate(180deg)}
 .adm-nav a .cnt{margin-left:auto;font-size:12px;font-weight:600;color:var(--fb-text-tertiary);font-variant-numeric:tabular-nums}
 .adm-nav a.is-active .cnt{color:var(--fb-brand)}
 .adm-side .grow{flex:1}
-.adm-me{display:flex;align-items:center;gap:10px;padding:10px 10px;border-top:1px solid var(--fb-line);margin-top:8px;font-size:13px}
+.adm-me{display:flex;align-items:center;gap:10px;padding:10px 4px 10px 10px;border-top:1px solid var(--fb-line);margin-top:8px;font-size:13px}
+.adm-me > div{flex:1}
+.adm-me .icon-btn{width:32px;height:32px;border-radius:10px;flex:none;color:var(--fb-text-tertiary)}
+.adm-me .icon-btn .ic{width:18px;height:18px}
+
+/* ============ LOGIN ============ */
+#view-login{min-height:100vh;background:var(--fb-bg-grey);display:flex;align-items:center;justify-content:center;padding:40px 16px calc(40px + env(safe-area-inset-bottom,0px))}
+.login{width:min(400px,100%);display:flex;flex-direction:column;gap:12px}
+.login-card{background:var(--fb-surface);border-radius:var(--radius-3xl);padding:32px 28px 24px}
+.login-brand{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700;letter-spacing:-.01em;margin-bottom:28px}
+.login-brand .mark{width:30px;height:30px;border-radius:9px;background:var(--fb-brand);display:inline-flex;align-items:center;justify-content:center;flex:none}
+.login-brand .mark svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.login-card h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.35}
+.login-card .sub{margin-top:6px;font-size:15px;color:var(--fb-text-tertiary);line-height:1.5}
+.login-form{display:flex;flex-direction:column;gap:16px;margin-top:28px}
+.login-form .pw{position:relative}
+.login-form .pw .tf{padding-right:48px}
+.login-form .pw .icon-btn{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:40px;height:40px;color:var(--fb-text-tertiary)}
+.login-form .pw .icon-btn .ic{width:20px;height:20px}
+.login-form .help{font-size:13px;font-weight:500;line-height:1.45;color:var(--fb-text-tertiary)}
+.login-form .help.error{color:var(--fb-danger)}
+.login-form > .help{margin-top:-6px}
+.login-form .help:empty{display:none}
+.login-form .check{padding:0}
+.login-form .btn{width:100%;margin-top:4px}
+.login-foot{display:flex;justify-content:center;margin-top:12px}
+.login-alert{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:var(--radius-m);background:rgba(var(--rgb-red),var(--fb-wash-alpha));color:var(--fb-danger);font-size:13px;font-weight:500;line-height:1.5}
+.login-alert b{display:block;font-weight:700;font-size:14px;margin-bottom:2px}
+.pw-rules{list-style:none;margin:2px 0 0;padding:0;display:flex;gap:14px;flex-wrap:wrap}
+.pw-rules li{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:500;color:var(--fb-text-quaternary);transition:color var(--dur-fast) var(--ease)}
+.pw-rules li .ic{width:14px;height:14px;stroke-width:2.25}
+.pw-rules li.ok{color:var(--fb-success)}
+.login-demo .h button{display:inline;width:auto;margin:0;padding:2px 4px;font-size:12px;color:var(--fb-brand);font-weight:600}
+.login-demo .st{font-size:11px;font-weight:600;color:var(--fb-text-tertiary);flex:none}
+.login-demo .st.lock{color:var(--fb-danger)}
+.fbw-sync .icon-btn{width:28px;height:28px;border-radius:8px;color:var(--fb-text-tertiary);flex:none}
+.fbw-sync .icon-btn .ic{width:16px;height:16px}
+.login-demo{border:1px dashed var(--fb-line-strong);border-radius:var(--radius-xl);padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.login-demo .h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:12px;color:var(--fb-text-tertiary)}
+.login-demo .h b{font-size:13px;color:var(--fb-text-secondary);font-weight:600}
+.login-demo button{display:flex;align-items:center;gap:10px;width:100%;padding:8px;margin:0 -8px;width:calc(100% + 16px);border:0;background:none;border-radius:10px;text-align:left;font-size:13px;color:var(--fb-text-secondary)}
+.login-demo button:hover{background:var(--fb-fill-secondary)}
+.login-demo button .who{flex:1;min-width:0;font-weight:600;color:var(--fb-text-primary)}
+.login-demo button .em{color:var(--fb-text-tertiary);font-variant-numeric:tabular-nums}
+.login-demo .role-tag{height:18px;padding:0 6px;border-radius:5px;background:var(--fb-brand-weak);color:var(--fb-brand);font-size:11px;font-weight:600;display:inline-flex;align-items:center}
+@media (max-width:480px){.login-card{padding:28px 20px 20px}.login-demo .em{display:none}}
 .adm-me .n{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .adm-me .r{font-size:11px;color:var(--fb-text-tertiary)}
 .adm-main{background:var(--fb-surface);border-radius:var(--radius-3xl);min-width:0;display:flex;flex-direction:column}
@@ -736,7 +808,7 @@ button.loc-chip:focus-visible{outline:2px solid var(--fb-brand);outline-offset:2
   <symbol id="i-reply" viewBox="0 0 24 24"><path d="M9 17 4 12l5-5"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></symbol>
   <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></symbol>
   <symbol id="i-ext" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
-  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></symbol><symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M9.9 5.2A9.7 9.7 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-2.6 3.6M6.6 6.6C3.7 8.4 2 12 2 12s3.5 7 10 7a9.6 9.6 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="m3 3 18 18"/></symbol>
   <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 1 1 12 0v5l2 2H4Z"/><path d="M10 21h4"/></symbol>
   <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/></symbol>
   <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11 9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></symbol>
@@ -797,7 +869,7 @@ button.loc-chip:focus-visible{outline:2px solid var(--fb-brand);outline-offset:2
           <ul class="host-list">
             <li><span class="dot"><svg class="ic s"><use href="#i-edit"/></svg></span><div><div>김민수님이 템플릿을 수정했어요</div><div class="meta">12분 전</div></div></li>
             <li><span class="dot"><svg class="ic s"><use href="#i-image"/></svg></span><div><div>배너 이미지 4개가 업로드됐어요</div><div class="meta">1시간 전</div></div></li>
-            <li><span class="dot"><svg class="ic s"><use href="#i-bell"/></svg></span><div><div>결제 실패 알림 3건</div><div class="meta">3시간 전</div></div></li>
+            <li><span class="dot"><svg class="ic s"><use href="#i-bell"/></svg></span><div><div>결제 실패 알림이 3건 왔어요</div><div class="meta">3시간 전</div></div></li>
             <li><span class="dot"><svg class="ic s"><use href="#i-users"/></svg></span><div><div>새 멤버 2명이 합류했어요</div><div class="meta">어제</div></div></li>
           </ul>
         </div>
@@ -867,6 +939,45 @@ button.loc-chip:focus-visible{outline:2px solid var(--fb-brand);outline-offset:2
   </aside>
 </div>
 
+<!-- ======================= LOGIN ======================= -->
+<!-- 계정은 사내에서 미리 발급해 전달하므로 회원가입 흐름은 없음 -->
+<div id="view-login" hidden>
+  <div class="login">
+    <div class="login-card">
+      <div class="login-brand"><span class="mark"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>피드백 포인트</div>
+      <h1 id="login-title">로그인</h1>
+      <p class="sub" id="login-sub">회사에서 받은 계정으로 로그인해 주세요</p>
+      <!-- 첫 로그인: 임시 비밀번호 변경 (건너뛸 수 없음) -->
+      <form class="login-form" id="pwc-form" novalidate hidden>
+        <input type="text" id="pwc-user" autocomplete="username" hidden>
+        <div class="field"><label for="pwc-new">새 비밀번호</label>
+          <div class="pw"><input class="tf" id="pwc-new" type="password" autocomplete="new-password" placeholder="새 비밀번호"><button type="button" class="icon-btn" data-pw-toggle="pwc-new" aria-label="비밀번호 보기" aria-pressed="false"><svg class="ic"><use href="#i-eye"/></svg></button></div>
+          <ul class="pw-rules" id="pwc-rules"><li data-rule="len"><svg class="ic"><use href="#i-check"/></svg>8자 이상</li><li data-rule="mix"><svg class="ic"><use href="#i-check"/></svg>영문과 숫자 포함</li></ul>
+        </div>
+        <div class="field"><label for="pwc-confirm">새 비밀번호 확인</label>
+          <div class="pw"><input class="tf" id="pwc-confirm" type="password" autocomplete="new-password" placeholder="한 번 더 입력"><button type="button" class="icon-btn" data-pw-toggle="pwc-confirm" aria-label="비밀번호 보기" aria-pressed="false"><svg class="ic"><use href="#i-eye"/></svg></button></div>
+        </div>
+        <p class="help error" id="pwc-error" role="alert"></p>
+        <button type="submit" class="btn btn-xl btn-primary" id="pwc-submit" disabled>변경하고 시작하기</button>
+      </form>
+      <form class="login-form" id="login-form" novalidate>
+        <div class="field"><label for="login-email">이메일</label><input class="tf" id="login-email" type="email" inputmode="email" autocomplete="username" placeholder="name@company.com" autocapitalize="off" spellcheck="false"></div>
+        <div class="field"><label for="login-pw">비밀번호</label>
+          <div class="pw"><input class="tf" id="login-pw" type="password" autocomplete="current-password" placeholder="비밀번호"><button type="button" class="icon-btn" id="login-pw-toggle" aria-label="비밀번호 보기" aria-pressed="false"><svg class="ic"><use href="#i-eye"/></svg></button></div>
+          <p class="help" id="login-caps"></p>
+        </div>
+        <p class="help error" id="login-error" role="alert"></p>
+        <div class="login-alert" id="login-lock" role="alert" hidden><div><b>계정이 잠겼어요</b>비밀번호를 5번 틀렸어요. 관리자에게 잠금 해제를 요청해 주세요.</div></div>
+        <label class="check"><input type="checkbox" id="login-keep" checked><span class="box"><svg viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></svg></span><span class="lbl">로그인 상태 유지</span></label>
+        <button type="submit" class="btn btn-xl btn-primary" id="login-submit" disabled>로그인</button>
+      </form>
+      <div class="login-foot"><button type="button" class="text-btn neutral" id="login-forgot">비밀번호를 잊으셨나요?</button><button type="button" class="text-btn neutral" id="pwc-cancel" hidden>다른 계정으로 로그인</button></div>
+    </div>
+    <!-- 프로토타입 전용: 데모 계정 빠른 입력 -->
+    <div class="login-demo" id="login-demo"></div>
+  </div>
+</div>
+
 <!-- ======================= ADMIN ======================= -->
 <div id="view-admin" hidden>
   <div class="adm">
@@ -930,10 +1041,10 @@ const MEMO_STATUSES = [
   {id:'hold', label:'보류', cls:'st-hold', rgb:'var(--rgb-grey)'},
 ];
 const DEMO_USERS = [
-  {id:'demo:ceo', name:'김대표', title:'대표',     role:'admin',  av:'c4'},
-  {id:'demo:pm',  name:'이기획', title:'기획자',   role:'member', av:''},
-  {id:'demo:des', name:'박디자인', title:'디자이너', role:'member', av:'c3'},
-  {id:'demo:dev', name:'최개발', title:'개발자',   role:'member', av:'c2'},
+  {id:'demo:ceo', name:'김대표', title:'대표',     role:'admin',  av:'av-purple'},
+  {id:'demo:pm',  name:'이기획', title:'기획자',   role:'member', av:'av-teal'},
+  {id:'demo:des', name:'박디자인', title:'디자이너', role:'member', av:'av-yellow'},
+  {id:'demo:dev', name:'최개발', title:'개발자',   role:'member', av:'av-brown'},
 ];
 const HOST_PAGES = {
   dashboard:{title:'홈', url:'https://console.el-bigs.example/dashboard'},
@@ -961,6 +1072,8 @@ function fmtDate(iso,opt={}){
   if(opt.time) return `${p(d.getHours())}:${p(d.getMinutes())}`;
   return base;
 }
+// 받침 유무로 '로/으로' 선택 (ㄹ 받침은 '로')
+function josaRo(w){ const c=(w||'').charCodeAt(w.length-1)-0xAC00; if(!(c>=0&&c<=11171)) return '(으)로'; const j=c%28; return (j===0||j===8)?'로':'으로'; }
 function fmtRel(iso){
   const t=new Date(iso).getTime(); if(isNaN(t)) return '';
   const s=Math.max(0,(Date.now()-t)/1000);
@@ -1058,7 +1171,42 @@ async function initIdentity(){
 function setPersona(id){
   const p=byId(DEMO_USERS,id); if(!p) return;
   S.me={id:p.id,name:p.name,isAdmin:p.role==='admin',demo:true,av:p.av}; LS.set('fbp:persona',id);
+  const s=getSession(); if(s && s.userId!==id) setSession(id,s.keep);
   renderAll();
+}
+
+/* ---------- auth (prototype) ----------
+   계정은 사내에서 미리 발급해 전달 → 회원가입 없음.
+   정책: 첫 로그인 시 임시 비밀번호 변경 필수 / 비밀번호 5회 연속 오류 시 계정 잠금(관리자가 해제).
+   TODO(API): POST /auth/login {email,password} → {token, mustChangePassword} | 401 {failCount} | 423 locked
+              POST /auth/password {newPassword}. 아래 localStorage 계정 상태는 프로토타입 전용. */
+const DEMO_PASSWORD='onpage1234';
+const MAX_LOGIN_FAILS=5;
+const DEMO_ACCOUNTS=[
+  {email:'ceo@onpage.example', userId:'demo:ceo'},
+  {email:'pm@onpage.example',  userId:'demo:pm'},
+  {email:'design@onpage.example', userId:'demo:des'},
+  {email:'dev@onpage.example', userId:'demo:dev'},
+];
+const ACC_KEY='fbp:accounts', FAIL_KEY='fbp:loginFails', SESSION_KEY='fbp:session';
+function accState(email){ const all=LS.get(ACC_KEY,{}); return all[email]||{pw:DEMO_PASSWORD,mustChange:true}; }
+function setAccState(email,patch){ const all=LS.get(ACC_KEY,{}); all[email]={...accState(email),...patch}; LS.set(ACC_KEY,all); }
+function failCount(email){ return (LS.get(FAIL_KEY,{})[email])||0; }
+function setFailCount(email,n){ const all=LS.get(FAIL_KEY,{}); if(n) all[email]=n; else delete all[email]; LS.set(FAIL_KEY,all); }
+const isLocked=email=>failCount(email)>=MAX_LOGIN_FAILS;
+function resetDemoAccounts(){ try{ localStorage.removeItem(ACC_KEY); localStorage.removeItem(FAIL_KEY); }catch(e){} }
+function getSession(){
+  try{ const v=sessionStorage.getItem(SESSION_KEY); if(v) return JSON.parse(v); }catch(e){}
+  return LS.get(SESSION_KEY,null);
+}
+function setSession(userId,keep){
+  const s={userId,keep:!!keep,at:nowIso()};
+  clearSession();
+  if(keep) LS.set(SESSION_KEY,s); else { try{ sessionStorage.setItem(SESSION_KEY,JSON.stringify(s)); }catch(e){} }
+}
+function clearSession(){
+  try{ sessionStorage.removeItem(SESSION_KEY); }catch(e){}
+  try{ localStorage.removeItem(SESSION_KEY); }catch(e){}
 }
 function nameOf(id){
   if(!id) return '미지정';
@@ -1066,11 +1214,14 @@ function nameOf(id){
   if(id===S.me.id) return S.me.name||'나';
   return '구성원';
 }
+// 사람 아바타 색: 상태·우선순위 칩(blue/green/orange/red/grey)과 겹치지 않는 4색. 실제 사용자는 id로 고정 배정.
+const AVATAR_TONES=['av-purple','av-teal','av-yellow','av-brown'];
+function avatarTone(id){ let x=0; for(const ch of String(id)) x=(x*31+ch.charCodeAt(0))>>>0; return AVATAR_TONES[x%AVATAR_TONES.length]; }
 function avatarHtml(id,size=''){
   const u=byId(DEMO_USERS,id);
   const n=nameOf(id);
   const url=S.avatars[id];
-  const cls=u?u.av:(id?'':'c5');
+  const cls=u?u.av:(id?avatarTone(id):'c5');
   if(url) return `<span class="avatar ${size} ${cls}" data-av="${esc(id)}"><img src="${esc(url)}" alt=""></span>`;
   return `<span class="avatar ${size} ${cls}" data-av="${esc(id)}">${esc(id?n.slice(0,1):'—')}</span>`;
 }
@@ -1108,7 +1259,7 @@ function dialog({title,body,primary,secondary='취소',danger=false}){
   return new Promise(res=>{
     const root=$('#overlay-root');
     const w=document.createElement('div'); w.className='scrim';
-    w.innerHTML=`<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-t"><h3 id="dlg-t">${esc(title)}</h3>${body?`<p>${esc(body)}</p>`:''}<div class="actions"><button type="button" class="btn btn-l ${danger?'btn-danger':'btn-primary'}" data-r="1">${esc(primary)}</button><button type="button" class="btn btn-l btn-secondary" data-r="0">${esc(secondary)}</button></div></div>`;
+    w.innerHTML=`<div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-t"><h3 id="dlg-t">${esc(title)}</h3>${body?`<p>${esc(body)}</p>`:''}<div class="actions"><button type="button" class="btn btn-l ${danger?'btn-danger':'btn-primary'}" data-r="1">${esc(primary)}</button><button type="button" ${secondary?`<button type="button" class="btn btn-l btn-secondary" data-r="0">${esc(secondary)}</button>`:''}</div></div>`;
     w.addEventListener('click',e=>{ const b=e.target.closest('[data-r]'); if(b){ w.remove(); res(b.dataset.r==='1'); } else if(e.target===w){ w.remove(); res(false);} });
     root.appendChild(w); w.querySelector('[data-r="1"]').focus();
   });
@@ -1309,11 +1460,14 @@ function renderAnnotBar(){
   let bar=$('.annot-bar');
   if(!bar){ bar=document.createElement('div'); bar.className='annot-bar'; document.body.appendChild(bar); }
   const n=S.ui.draft?S.ui.draft.annotations.length:0;
-  bar.innerHTML=`<div class="seg" role="tablist"><button type="button" data-m="point" class="${S.annot.mode==='point'?'is-active':''}">${ic('i-pin','xs')} 포인트</button><button type="button" data-m="area" class="${S.annot.mode==='area'?'is-active':''}">${ic('i-area','xs')} 영역</button></div>
-    <span class="hint">${S.annot.mode==='point'?'위치를 클릭하세요':'드래그로 영역을 지정하세요'}</span><span class="cnt">${n}개 지정</span>
-    <button type="button" class="btn btn-s btn-ghost" data-a="undo" ${n?'':'disabled'}>되돌리기</button>
-    <button type="button" class="btn btn-s btn-ghost" data-a="cancel">취소</button>
-    <button type="button" class="btn btn-s btn-primary" data-a="done">완료</button>`;
+  const last=n?S.ui.draft.annotations[n-1]:null; // 위치는 1개만 지정 (replaceAnn)
+  const hint=last?`${ic('i-check','xs')}${last.kind==='area'?'영역을':'위치를'} 지정했어요`:(S.annot.mode==='point'?'화면에서 위치를 눌러 주세요':'드래그해서 영역을 지정해 주세요');
+  bar.innerHTML=`<div class="seg" role="tablist" aria-label="지정 방식"><button type="button" role="tab" aria-selected="${S.annot.mode==='point'}" data-m="point" class="${S.annot.mode==='point'?'is-active':''}">${ic('i-pin','xs')}포인트</button><button type="button" role="tab" aria-selected="${S.annot.mode==='area'}" data-m="area" class="${S.annot.mode==='area'?'is-active':''}">${ic('i-area','xs')}영역</button></div>
+    <span class="div" aria-hidden="true"></span>
+    <span class="hint ${last?'set':''}" aria-live="polite">${hint}</span>
+    ${last?`<button type="button" class="btn btn-ghost" data-a="undo">지우기</button>`:''}
+    <button type="button" class="btn btn-ghost" data-a="cancel">취소</button>
+    <button type="button" class="btn btn-primary" data-a="done" ${n?'':'disabled'}>완료</button>`;
   bar.onclick=e=>{
     const m=e.target.closest('[data-m]'); if(m){ S.annot.mode=m.dataset.m; layer.classList.toggle('area',S.annot.mode==='area'); renderAnnotBar(); return; }
     const a=e.target.closest('[data-a]'); if(!a) return;
@@ -1422,17 +1576,17 @@ function renderPanelHead(){
   } else if(tab==='qa' && v==='form'){
     h.innerHTML=`<button type="button" class="icon-btn" data-act="back" aria-label="뒤로">${ic('i-back')}</button><div class="ttl">피드백 등록</div>${close}`;
   } else if(tab==='qa' && v==='success'){
-    h.innerHTML=`<div class="ttl" style="padding-left:6px">등록 완료</div>${close}`;
+    h.innerHTML=`<div class="ttl"></div>${close}`;
   } else {
-    h.innerHTML=`<div class="ttl"><span class="mark"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>피드백 포인트</div><button type="button" class="icon-btn ${S.ui.showMarkers?'c-brand':''}" data-act="markers" title="화면 마커 표시" aria-label="화면 마커 표시 전환" aria-pressed="${S.ui.showMarkers}">${ic('i-eye')}</button>${adminLink}${close}`;
+    h.innerHTML=`<div class="ttl"><span class="mark"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>피드백 포인트</div><button type="button" class="icon-btn ${S.ui.showMarkers?'c-brand':''}" data-act="markers" title="화면 마커 표시" aria-label="화면 마커 표시 전환" aria-pressed="${S.ui.showMarkers}">${ic('i-eye')}</button>${adminLink}<span class="head-div" aria-hidden="true"></span>${close}`;
   }
 }
 function renderSyncBar(){
   const el=$('#fbw-sync');
   const txt=S.syncMode==='db'?'실시간 공유':'데모 저장소 · 이 브라우저';
   const who=S.me.demo
-    ?`<span class="who">${avatarHtml(S.me.id,'s')}<select id="persona" aria-label="데모 사용자 전환">${DEMO_USERS.map(u=>`<option value="${u.id}" ${u.id===S.me.id?'selected':''}>${u.name} · ${u.title}${u.role==='admin'?' (관리자)':''}</option>`).join('')}</select></span>`
-    :`<span class="who">${avatarHtml(S.me.id,'s')}<b>${esc(S.me.name)}</b>${S.me.isAdmin?' · 관리자':''}</span>`;
+    ?`<span class="who">${avatarHtml(S.me.id,'s')}<span class="persona"><span class="pv">${(u=>u?`${u.name} · ${u.title}`:esc(S.me.name))(byId(DEMO_USERS,S.me.id))}</span><select id="persona" aria-label="데모 사용자 전환">${DEMO_USERS.map(u=>`<option value="${u.id}" ${u.id===S.me.id?'selected':''}>${u.name} · ${u.title}</option>`).join('')}</select>${ic('i-chev','xs')}</span>${S.me.isAdmin?'<span class="role-tag">관리자</span>':''}<button type="button" class="icon-btn" data-logout title="로그아웃" aria-label="로그아웃">${ic('i-logout')}</button></span>`
+    :`<span class="who">${avatarHtml(S.me.id,'s')}<b>${esc(S.me.name)}</b>${S.me.isAdmin?'<span class="role-tag">관리자</span>':''}<button type="button" class="icon-btn" data-logout title="로그아웃" aria-label="로그아웃">${ic('i-logout')}</button></span>`;
   el.innerHTML=(S.ui.tab==='qa'&&(S.ui.qaView==='form'||S.ui.qaView==='detail'))?who:`<i class="${S.syncMode==='db'?'':'off'}"></i><span>${txt}</span>${who}`;
   const sel=$('#persona'); if(sel) sel.addEventListener('change',()=>setPersona(sel.value));
 }
@@ -1457,7 +1611,7 @@ function renderPanelFoot(){
     const ta=$('#cmt-input'); if(ta){ ta.addEventListener('input',()=>autosize(ta)); ta.addEventListener('keydown',e=>{ if((e.metaKey||e.ctrlKey)&&e.key==='Enter'){ e.preventDefault(); sendComment(); } }); if(S.ui.replyTo) ta.focus(); }
     return;
   }
-  if(v==='success'){ f.innerHTML=`<button type="button" class="btn btn-xl btn-primary" data-act="to-list">확인</button>`; return; }
+  if(v==='success'){ f.innerHTML=`<div class="foot-pair"><button type="button" class="btn btn-xl btn-secondary" data-act="open-detail" data-id="${esc(S.ui.successId||'')}">상세 보기</button><button type="button" class="btn btn-xl btn-primary" data-act="to-list">확인</button></div>`; return; }
   f.innerHTML='';
 }
 function tabsHtml(){
@@ -1487,12 +1641,12 @@ function renderPanelBody(){
 function renderMemoTab(){
   if(!S.loaded) return loadingHtml();
   const f=S.ui.memoFilter;
-  const authors=[...new Set(S.memos.map(m=>m.authorId))];
   let list=S.memos.slice().sort((a,b)=>a.createdAt<b.createdAt?-1:1);
   if(f.author!=='all') list=list.filter(m=>m.authorId===f.author);
   if(f.status!=='all') list=list.filter(m=>(m.status||'new')===f.status);
-  const tb=`<div class="fbw-toolbar"><div class="row"><div class="chip-row" style="flex:1"><button type="button" class="chip ${f.author==='all'?'is-active':''}" data-mf-author="all">전체</button>${authors.map(a=>`<button type="button" class="chip ${f.author===a?'is-active':''}" data-mf-author="${esc(a)}"><span data-uid="${esc(a)}">${esc(nameOf(a))}</span></button>`).join('')}</div></div>
-    <div class="row"><div class="seg" style="flex:none"><button type="button" class="${f.status==='all'?'is-active':''}" data-mf-status="all">전체</button>${MEMO_STATUSES.map(s=>`<button type="button" class="${f.status===s.id?'is-active':''}" data-mf-status="${s.id}">${s.label}</button>`).join('')}</div></div></div>`;
+  const authorSet=f.author!=='all';
+  const authorBtn=`<button type="button" class="picker s ${authorSet?'is-set':''}" style="width:auto;flex:none;max-width:150px" data-act="pick-memo-author" aria-haspopup="menu" aria-label="작성자 필터">${authorSet?avatarHtml(f.author,'s'):ic('i-users','xs')}<span class="v" ${authorSet?`data-uid="${esc(f.author)}"`:''}>${authorSet?esc(nameOf(f.author)):'작성자'}</span>${ic('i-chev','s')}</button>`;
+  const tb=`<div class="fbw-toolbar"><div class="row"><div class="seg" style="flex:1" role="tablist" aria-label="메모 상태"><button type="button" class="${f.status==='all'?'is-active':''}" data-mf-status="all">전체</button>${MEMO_STATUSES.map(s=>`<button type="button" class="${f.status===s.id?'is-active':''}" data-mf-status="${s.id}">${s.label}</button>`).join('')}</div>${authorBtn}</div></div>`;
   if(!list.length) return tb+emptyHtml(S.memos.length?'조건에 맞는 메모가 없어요':'메모가 없어요', S.memos.length?'':'미팅 내용이나 의견을 가볍게 남겨 두세요', S.memos.length?'':sampleActions());
   let html='', lastDay='';
   list.forEach(m=>{
@@ -1568,8 +1722,8 @@ function captureBoxHtml(x,{action=''}={}){
   const src=captureSrc(x.capture);
   const ann=x.annotations||[];
   const ov=ann.map((a,i)=>{ const lbl=`${x.no}${ann.length>1?String.fromCharCode(97+i):''}`; return a.kind==='point'?`<div class="mk mk-point" style="left:${a.x*100}%;top:${a.y*100}%">${lbl}</div>`:`<div class="mk mk-area" style="left:${a.x*100}%;top:${a.y*100}%;width:${a.w*100}%;height:${a.h*100}%"><span class="lbl">${lbl}</span></div>`; }).join('');
-  if(!src) return `<div class="cap-box"><div class="ph">${ic('i-image')}<span>저장된 화면 캡쳐가 없어요</span></div>${action?`<div class="cap-act">${action}</div>`:''}</div>`;
-  return `<div class="cap-box"><img src="${esc(src)}" alt="등록 당시 화면 캡쳐" loading="lazy"><div class="ov">${ov}</div>${action?`<div class="cap-act">${action}</div>`:''}</div>`;
+  if(!src) return `<div class="cap-box"><div class="ph">${ic('i-image')}<span>저장된 화면 캡처가 없어요</span></div>${action?`<div class="cap-act">${action}</div>`:''}</div>`;
+  return `<div class="cap-box"><img src="${esc(src)}" alt="등록 당시 화면 캡처" loading="lazy"><div class="ov">${ov}</div>${action?`<div class="cap-act">${action}</div>`:''}</div>`;
 }
 function renderFeedbackDetail(x,{ctx}){
   if(!x) return emptyHtml('찾을 수 없는 피드백이에요','삭제됐거나 접근할 수 없어요',`<button type="button" class="btn btn-m btn-secondary" data-act="back">목록으로</button>`);
@@ -1584,7 +1738,7 @@ function renderFeedbackDetail(x,{ctx}){
   const showGoto=ann.length>0;
   const st=byId(STATUSES,x.status)||STATUSES[0];
   const chipDesc=(a,kind)=>esc(a.elText||(kind==='point'?'지정한 지점':'지정한 영역'));
-  const chips=ann.length?`<div class="loc-chips">${ann.map((a,i)=>showGoto?`<button type="button" class="loc-chip" data-act="goto-page" data-page="${esc(x.page||'')}" title="${chipDesc(a,a.kind)}"><span class="no-pill xs ${a.kind==='area'?'area':''}">${lbl(i)}</span><span class="t">해당 페이지로 이동하기</span></button>`:`<span class="loc-chip"><span class="no-pill xs ${a.kind==='area'?'area':''}">${lbl(i)}</span><span class="t">${chipDesc(a,a.kind)}</span></span>`).join('')}</div>`:'';
+  const chips=ann.length?`<div class="loc-chips">${ann.map((a,i)=>showGoto?`<button type="button" class="loc-chip" data-act="goto-page" data-page="${esc(x.page||'')}" title="${chipDesc(a,a.kind)}"><span class="no-pill xs ${a.kind==='area'?'area':''}">${lbl(i)}</span><span class="t">해당 화면으로 이동하기</span></button>`:`<span class="loc-chip"><span class="no-pill xs ${a.kind==='area'?'area':''}">${lbl(i)}</span><span class="t">${chipDesc(a,a.kind)}</span></span>`).join('')}</div>`:'';
   const evidence=(captureSrc(x.capture)?`<div class="cap-wrap">${captureBoxHtml(x)}</div>`:'')+chips;
   return `<div class="detail-hero">
     <div class="detail-badges">${badgePriority(x.priority)}${badgeType(x.type)}<span class="spacer"></span>${badgeStatus(x.status)}</div>
@@ -1612,18 +1766,18 @@ function renderForm(){
   const memos=S.memos.slice().sort((a,b)=>a.createdAt<b.createdAt?1:-1).slice(0,12);
   const lbl=i=>`${d.no}${ann.length>1?String.fromCharCode(97+i):''}`;
   const ov=ann.map((a,i)=>a.kind==='point'?`<div class="mk mk-point" style="left:${a.x*100}%;top:${a.y*100}%">${lbl(i)}</div>`:`<div class="mk mk-area" style="left:${a.x*100}%;top:${a.y*100}%;width:${a.w*100}%;height:${a.h*100}%"><span class="lbl">${lbl(i)}</span></div>`).join('');
-  const cap=d.captureState==='capturing'?`<div class="cap-box dashed"><div class="ph"><span class="loader"><i></i><i></i><i></i></span><span>화면을 캡쳐하고 있어요</span></div></div>`
-    :d.capture?`<div class="cap-box"><img src="${d.capture.dataUrl}" alt="캡처 미리보기"><div class="ov">${ov}</div><div class="cap-act"><button type="button" class="btn btn-s btn-secondary" data-act="recapture">${ic('i-refresh','xs')} 다시 캡쳐</button></div></div>`
-    :`<div class="cap-box dashed"><div class="ph"><span>${d.captureState==='failed'?'캡쳐에 실패했어요. 위치 정보만 저장돼요':'접속해 있는 페이지의 스크린샷이 등록돼요'}</span><button type="button" class="text-btn" data-act="recapture">화면 캡쳐하기</button></div></div>`;
+  const cap=d.captureState==='capturing'?`<div class="cap-box dashed"><div class="ph"><span class="loader"><i></i><i></i><i></i></span><span>화면을 캡처하고 있어요</span></div></div>`
+    :d.capture?`<div class="cap-box"><img src="${d.capture.dataUrl}" alt="캡처 미리보기"><div class="ov">${ov}</div><div class="cap-act"><button type="button" class="btn btn-s btn-secondary" data-act="recapture">${ic('i-refresh','xs')} 다시 캡처</button></div></div>`
+    :`<div class="cap-box dashed"><div class="ph"><span>${d.captureState==='failed'?'캡처에 실패했어요. 위치 정보만 저장돼요':'등록하면 지금 보는 화면이 함께 캡처돼요'}</span><button type="button" class="text-btn" data-act="recapture">화면 캡처하기</button></div></div>`;
   const showMemoLink=d.linkedMemoIds.length>0 && memos.length>0;
   return `<div class="fbw-form">
-    <div class="field"><input class="tf tf-title" id="f-title" value="${esc(d.title)}" placeholder="제목입력" maxlength="120" aria-label="제목"></div>
+    <div class="field"><input class="tf tf-title" id="f-title" value="${esc(d.title)}" placeholder="제목을 입력해 주세요" maxlength="120" aria-label="제목"></div>
     <div class="field"><span class="field-label">화면 정보</span>
       <div class="ann-btns"><button type="button" class="btn btn-l btn-weak" data-act="annot-point">${ic('i-pin','s')} 포인트</button><button type="button" class="btn btn-l btn-weak" data-act="annot-area">${ic('i-area','s')} 영역</button></div>
       ${ann.length?`<div class="ann-chips">${ann.map((a,i)=>`<span class="ann-chip"><span class="no-pill xs ${a.kind==='area'?'area':''}">${lbl(i)}</span>${esc(a.elText||(a.kind==='point'?'포인트':'영역'))}<button type="button" class="x" data-act="ann-del" data-i="${i}" aria-label="위치 삭제">${ic('i-x','xs')}</button></span>`).join('')}</div>`:''}
       ${cap}
     </div>
-    <div class="field"><label for="f-body">피드백 내용</label><textarea class="tf" id="f-body" placeholder="상세 내용을 작성해주세요">${esc(d.body)}</textarea></div>
+    <div class="field"><label for="f-body">피드백 내용</label><textarea class="tf" id="f-body" placeholder="상세 내용을 작성해 주세요">${esc(d.body)}</textarea></div>
     <div class="field"><span class="field-label">유형</span><div class="chip-row" id="f-type">${TYPES.map(t=>`<button type="button" class="chip ${d.type===t.id?'is-active':''}" data-v="${t.id}">${t.label}</button>`).join('')}</div></div>
     <div class="field"><span class="field-label">담당자</span><button type="button" class="picker" id="f-assignee" data-act="pick-assignee-draft" aria-haspopup="menu">${avatarHtml(d.assigneeId,'s')}<span class="v ${d.assigneeId?'':'ph'}" data-uid="${esc(d.assigneeId||'')}">${esc(d.assigneeId?nameOf(d.assigneeId):'미지정')}</span>${ic('i-chev','s')}</button></div>
     <div class="field"><span class="field-label">우선순위</span><div class="seg block" id="f-priority">${PRIORITIES.map(p=>`<button type="button" class="${d.priority===p.id?'is-active':''}" data-v="${p.id}">${p.label}</button>`).join('')}</div></div>
@@ -1641,7 +1795,8 @@ function bindForm(){
 }
 function renderSuccess(){
   const f=byId(S.feedback,S.ui.successId);
-  return `<div class="result"><div class="ok"><svg viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></svg></div><h3>등록했어요</h3><p>${f?`#${f.no} ${esc(f.title)}`:''}</p><svg class="face"><use href="#face"/></svg><button type="button" class="btn btn-m btn-secondary" data-act="open-detail" data-id="${esc(S.ui.successId||'')}">상세 보기</button></div>`;
+  const sub=!f?'':!f.assigneeId?'담당자는 상세 화면에서 지정할 수 있어요':f.assigneeId===S.me.id?'나에게 배정했어요':`<span data-uid="${esc(f.assigneeId)}">${esc(nameOf(f.assigneeId))}</span>님에게 배정했어요`;
+  return `<div class="result"><div class="ok"><svg viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></svg></div><h3>피드백을 등록했어요</h3>${sub?`<p>${sub}</p>`:''}</div>`;
 }
 async function submitFeedback(){
   const d=S.ui.draft; if(!d||!d.title.trim()) return;
@@ -1659,7 +1814,7 @@ async function patchFeedback(id,patch,hist){
   const f=byId(S.feedback,id); if(!f) return;
   const history=hist?[...(f.history||[]),{at:nowIso(),byId:S.me.id,...hist}]:f.history;
   try{ await store.update('feedback',id,{...patch,history,updatedAt:nowIso()}); }
-  catch(e){ console.error(e); toast('변경하지 못했어요. 권한이 없거나 연결이 끊겼어요','err'); }
+  catch(e){ console.error(e); toast('변경하지 못했어요. 권한이나 연결 상태를 확인해 주세요','err'); }
 }
 async function sendComment(){
   const ta=$('#cmt-input'); const text=(ta.value||'').trim(); if(!text) return;
@@ -1671,7 +1826,7 @@ async function sendComment(){
   renderPanel();
 }
 function pickStatus(anchor,x,after){
-  showMenu(anchor,STATUSES.map(s=>({id:s.id,label:s.label,active:x.status===s.id,icon:swatch(s.rgb)})),{onPick:async it=>{ if(it.id===x.status) return; await patchFeedback(x.id,{status:it.id},{action:'status',from:x.status,to:it.id}); toast(`상태를 '${it.label}'(으)로 바꿨어요`); after&&after(); }});
+  showMenu(anchor,STATUSES.map(s=>({id:s.id,label:s.label,active:x.status===s.id,icon:swatch(s.rgb)})),{onPick:async it=>{ if(it.id===x.status) return; await patchFeedback(x.id,{status:it.id},{action:'status',from:x.status,to:it.id}); toast(`상태를 '${it.label}'${josaRo(it.label)} 바꿨어요`); after&&after(); }});
 }
 function peopleItems(current){
   const items=[{id:null,label:'미지정',active:!current,icon:avatarHtml(null,'s')}];
@@ -1693,7 +1848,6 @@ panel.addEventListener('click',async e=>{
   const tab=e.target.closest('[data-tab]'); if(tab){ S.ui.tab=tab.dataset.tab; S.ui.replyTo=null; renderPanel(); return; }
   const qs=e.target.closest('[data-qf-status]'); if(qs){ S.ui.qaFilter.status=qs.dataset.qfStatus; renderPanelBody(); return; }
   const qsc=e.target.closest('[data-qf-scope]'); if(qsc){ S.ui.qaFilter.scope=qsc.dataset.qfScope; renderPanelBody(); return; }
-  const ma=e.target.closest('[data-mf-author]'); if(ma){ S.ui.memoFilter.author=ma.dataset.mfAuthor; renderPanelBody(); return; }
   const ms=e.target.closest('[data-mf-status]'); if(ms){ S.ui.memoFilter.status=ms.dataset.mfStatus; renderPanelBody(); return; }
   const a=e.target.closest('[data-act]'); if(!a) return;
   const act=a.dataset.act; const fb=byId(S.feedback,S.ui.detailId);
@@ -1704,6 +1858,8 @@ panel.addEventListener('click',async e=>{
     case 'to-list': S.ui.qaView='list'; renderPanel(); break;
     case 'open-detail': S.ui.qaView='detail'; S.ui.detailId=a.dataset.id; renderPanel(); renderMarkers(); break;
     case 'markers': S.ui.showMarkers=!S.ui.showMarkers; renderPanelHead(); renderMarkers(); toast(S.ui.showMarkers?'화면에 마커를 표시해요':'화면 마커를 숨겼어요','info'); break;
+    case 'pick-memo-author': { const cur=S.ui.memoFilter.author; const authors=[...new Set(S.memos.map(m=>m.authorId))];
+      showMenu(a,[{id:'all',label:'작성자 전체',active:cur==='all',icon:ic('i-users','s')},...authors.map(id=>({id,label:nameOf(id),active:cur===id,icon:avatarHtml(id,'s')}))],{onPick:it=>{ S.ui.memoFilter.author=it.id; renderPanelBody(); }}); break; }
     case 'pick-scope': showMenu(a,SCOPES.map(([id,l])=>({id,label:l,active:S.ui.qaFilter.scope===id})),{onPick:it=>{ S.ui.qaFilter.scope=it.id; renderPanelBody(); }}); break;
     case 'new': newDraft(); S.ui.qaView='form'; renderPanel(); renderMarkers(); $('#fbw-body').scrollTop=0; break;
     case 'submit': submitFeedback(); break;
@@ -1795,7 +1951,7 @@ async function insertSamples(){
 async function clearSamples(){
   if(!(await dialog({title:'예시 데이터를 지울까요?',body:'"예시" 표시가 붙은 피드백과 메모만 지워져요.',primary:'지우기',danger:true}))) return;
   try{ for(const f of S.feedback.filter(x=>x.sample)) await store.remove('feedback',f.id); for(const m of S.memos.filter(x=>x.sample)) await store.remove('memos',m.id); toast('예시 데이터를 지웠어요'); }
-  catch(e){ toast('일부를 지우지 못했어요','err'); }
+  catch(e){ toast('일부를 지우지 못했어요. 다시 시도해 주세요','err'); }
 }
 
 /* ======================= ADMIN ======================= */
@@ -1819,7 +1975,7 @@ function renderAdmin(){
   const r=S.admin.route;
   $$('#adm-nav a').forEach(a=>a.classList.toggle('is-active',a.dataset.route===r));
   $('#nav-cnt-all').textContent=S.feedback.length||''; $('#nav-cnt-memo').textContent=S.memos.length||'';
-  $('#adm-me').innerHTML=`${avatarHtml(S.me.id)}<div style="min-width:0"><div class="n">${esc(S.me.name)}</div><div class="r">${S.me.isAdmin?'관리자':'일반 직원'}${S.syncMode==='db'?' · 실시간 공유':' · 데모 저장소'}</div></div>`;
+  $('#adm-me').innerHTML=`${avatarHtml(S.me.id)}<div style="min-width:0"><div class="n">${esc(S.me.name)}</div><div class="r">${S.me.isAdmin?'관리자':'일반 직원'}${S.syncMode==='db'?' · 실시간 공유':' · 데모 저장소'}</div></div><button type="button" class="icon-btn" data-logout title="로그아웃" aria-label="로그아웃">${ic('i-logout')}</button>`;
   const top=$('#adm-top'), c=$('#adm-content');
   const sampleBtn=sampleActions();
   if(r==='admin'){
@@ -1859,8 +2015,8 @@ function renderDashboard(){
   const prBars=`<div class="bars">${PRIORITIES.map(p=>{ const n=open.filter(x=>x.priority===p.id).length; return `<button type="button" class="bar" data-bar="priority" data-k="${p.id}" style="--bc:${p.rgb}"><span class="n"><i class="sw"></i>${p.label}</span><span class="track"><span class="fill" style="width:${(n/prMax*100).toFixed(1)}%;background:rgb(${p.rgb})"></span></span><span class="v">${n}</span></button>`; }).join('')}</div>`;
   const recent=all.slice().sort((a,b)=>a.createdAt<b.createdAt?1:-1).slice(0,6);
   return stats+`<div class="panels">
-    <div class="panel"><h3>담당자별 <small>미완료 / 전체</small></h3>${byAssignee.size?bars(byAssignee,k=>`${avatarHtml(k||null,'s')}<span data-uid="${esc(k)}">${esc(nameOf(k||null))}</span>`,'assignee'):'<p class="c-ter t-body3">데이터 없음</p>'}</div>
-    <div class="panel"><h3>고객사별 <small>미완료 / 전체</small></h3>${byClient.size?bars(byClient,k=>esc(k),'client'):'<p class="c-ter t-body3">고객사 지정 피드백 없음</p>'}</div>
+    <div class="panel"><h3>담당자별 <small>미완료 / 전체</small></h3>${byAssignee.size?bars(byAssignee,k=>`${avatarHtml(k||null,'s')}<span data-uid="${esc(k)}">${esc(nameOf(k||null))}</span>`,'assignee'):'<p class="c-ter t-body3">데이터가 없어요</p>'}</div>
+    <div class="panel"><h3>고객사별 <small>미완료 / 전체</small></h3>${byClient.size?bars(byClient,k=>esc(k),'client'):'<p class="c-ter t-body3">고객사가 지정된 피드백이 없어요</p>'}</div>
     <div class="panel"><h3>우선순위별 <small>미완료</small></h3>${prBars}</div>
   </div>
   <div class="panel"><h3>최근 등록</h3><div class="table-wrap">${tableHtml(recent,{compact:true})}</div></div>`;
@@ -1956,13 +2112,133 @@ adminEl.addEventListener('click',e=>{
 });
 adminEl.addEventListener('change',async e=>{
   const f=e.target.closest('[data-f]'); if(f){ S.admin.filters[f.dataset.f]=f.value; S.admin.page=1; renderAdmin(); return; }
-  const so=e.target.closest('[data-status-of]'); if(so){ const x=byId(S.feedback,so.dataset.statusOf); if(x&&x.status!==so.value){ await patchFeedback(x.id,{status:so.value},{action:'status',from:x.status,to:so.value}); toast(`#${x.no} 상태를 '${byId(STATUSES,so.value).label}'(으)로 바꿨어요`); } }
+  const so=e.target.closest('[data-status-of]'); if(so){ const x=byId(S.feedback,so.dataset.statusOf); if(x&&x.status!==so.value){ await patchFeedback(x.id,{status:so.value},{action:'status',from:x.status,to:so.value}); toast(`#${x.no} 상태를 '${byId(STATUSES,so.value).label}'${josaRo(byId(STATUSES,so.value).label)} 바꿨어요`); } }
 });
 adminEl.addEventListener('input',e=>{ if(e.target.id==='adm-q'){ S.admin.filters.q=e.target.value; S.admin.page=1; const pos=e.target.selectionStart; renderAdmin(); const q=$('#adm-q'); if(q){ q.focus(); q.setSelectionRange(pos,pos); } } });
 
 /* ======================= ROUTER / BOOT ======================= */
+/* ---------- login view ---------- */
+const loginEl=$('#view-login');
+let pendingLogin=null; // 첫 로그인 비밀번호 변경 대기 {email,userId,keep,oldPw}
+function renderLoginDemo(){
+  $('#login-demo').innerHTML=`<div class="h"><b>데모 계정</b><span>처음 비밀번호는 모두 ${DEMO_PASSWORD}예요 <button type="button" data-demo-reset>초기화</button></span></div>`+
+    DEMO_ACCOUNTS.map(a=>{ const u=byId(DEMO_USERS,a.userId); const st=isLocked(a.email)?'<span class="st lock">잠김</span>':accState(a.email).mustChange?'':'<span class="st">비밀번호 변경됨</span>';
+      return `<button type="button" data-fill="${esc(a.email)}">${avatarHtml(u.id,'s')}<span class="who">${esc(u.name)} · ${esc(u.title)}</span>${st}${u.role==='admin'?'<span class="role-tag">관리자</span>':''}<span class="em">${esc(a.email)}</span></button>`; }).join('');
+}
+function setLoginStep(step){
+  const pwc=step==='change';
+  $('#login-form').hidden=pwc; $('#pwc-form').hidden=!pwc;
+  $('#login-forgot').hidden=pwc; $('#pwc-cancel').hidden=!pwc;
+  $('#login-title').textContent=pwc?'새 비밀번호 설정':'로그인';
+  $('#login-sub').textContent=pwc?'임시 비밀번호로 로그인했어요. 앞으로 쓸 비밀번호를 정해 주세요':'회사에서 받은 계정으로 로그인해 주세요';
+  if(pwc){ ['pwc-new','pwc-confirm'].forEach(id=>{ $('#'+id).value=''; $('#'+id).classList.remove('is-error'); }); $('#pwc-user').value=pendingLogin.email; $('#pwc-error').textContent=''; syncPwc(); setTimeout(()=>$('#pwc-new').focus(),0); }
+  else { pendingLogin=null; }
+}
+function showLogin(){
+  if(S.annot.active) stopAnnot(true);
+  if(S.ui.open) closePanel(true);
+  closeMenu(); S.admin.drawerId=null; renderDrawer();
+  hostEl.hidden=true; adminEl.hidden=true; loginEl.hidden=false;
+  document.title='로그인 · 피드백 포인트';
+  if(!pendingLogin) setLoginStep('login');
+  renderLoginDemo(); syncLoginBtn(); window.scrollTo(0,0);
+  setTimeout(()=>{ const e=$('#login-email'); if(!pendingLogin && e && !e.value) e.focus(); },0);
+}
+function syncLoginBtn(){
+  const email=$('#login-email').value.trim().toLowerCase(), locked=!!email && isLocked(email);
+  $('#login-lock').hidden=!locked;
+  if(locked){ $('#login-error').textContent=''; }
+  $('#login-email').classList.toggle('is-error',locked||!!$('#login-error').textContent);
+  $('#login-pw').classList.toggle('is-error',!locked&&!!$('#login-error').textContent);
+  $('#login-pw').disabled=locked;
+  $('#login-submit').disabled=locked||!(email && $('#login-pw').value);
+}
+function setLoginError(msg){ $('#login-error').textContent=msg||''; syncLoginBtn(); }
+['input','change'].forEach(ev=>$('#login-form').addEventListener(ev,e=>{ if(e.target.matches('#login-email,#login-pw')){ if(e.target.id==='login-email' || $('#login-error').textContent) $('#login-error').textContent=''; syncLoginBtn(); } }));
+$('#login-pw').addEventListener('keyup',e=>{ $('#login-caps').textContent=e.getModifierState&&e.getModifierState('CapsLock')?'Caps Lock이 켜져 있어요':''; });
+function togglePw(btn,input){
+  const show=input.type==='password';
+  input.type=show?'text':'password'; btn.setAttribute('aria-pressed',show); btn.setAttribute('aria-label',show?'비밀번호 숨기기':'비밀번호 보기');
+  btn.innerHTML=ic(show?'i-eye-off':'i-eye'); input.focus();
+}
+$('#login-pw-toggle').addEventListener('click',()=>togglePw($('#login-pw-toggle'),$('#login-pw')));
+loginEl.addEventListener('click',e=>{ const b=e.target.closest('[data-pw-toggle]'); if(b) togglePw(b,$('#'+b.dataset.pwToggle)); });
+$('#login-demo').addEventListener('click',e=>{
+  if(e.target.closest('[data-demo-reset]')){ resetDemoAccounts(); renderLoginDemo(); setLoginError(''); toast('데모 계정을 처음 상태로 되돌렸어요','info'); return; }
+  const b=e.target.closest('[data-fill]'); if(!b || pendingLogin) return;
+  $('#login-email').value=b.dataset.fill; $('#login-pw').value=accState(b.dataset.fill).pw; $('#login-error').textContent=''; syncLoginBtn();
+  if(!$('#login-submit').disabled) $('#login-submit').focus();
+});
+$('#login-forgot').addEventListener('click',()=>dialog({title:'비밀번호를 잊으셨나요?',body:'계정은 회사에서 발급해요. 관리자에게 비밀번호 재설정을 요청해 주세요.',primary:'확인',secondary:null}));
+function setBtnLoading(btn,on){
+  btn.classList.toggle('is-loading',on);
+  if(on){ btn.disabled=true; btn.insertAdjacentHTML('beforeend','<span class="loader"><i></i><i></i><i></i></span>'); } else btn.querySelector('.loader')?.remove();
+}
+function completeLogin(userId,keep){
+  setSession(userId,keep); pendingLogin=null;
+  $('#login-pw').value=''; $('#login-error').textContent=''; $('#login-caps').textContent=''; setLoginStep('login');
+  if(S.me.demo) setPersona(userId);
+  if(/^login$/.test((location.hash||'').replace(/^#/,''))) location.replace('#widget');
+  route();
+}
+$('#login-form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const btn=$('#login-submit'); if(btn.disabled) return;
+  const email=$('#login-email').value.trim().toLowerCase(), pw=$('#login-pw').value;
+  setBtnLoading(btn,true);
+  await new Promise(r=>setTimeout(r,600)); // TODO(API): 실제 인증 요청으로 교체
+  setBtnLoading(btn,false);
+  if(isLocked(email)){ syncLoginBtn(); return; }
+  const acc=DEMO_ACCOUNTS.find(a=>a.email===email);
+  if(!acc || pw!==accState(email).pw){
+    const n=failCount(email)+1; setFailCount(email,n); // 존재하지 않는 이메일도 같은 규칙으로 세어 계정 존재 여부를 드러내지 않음
+    if(n>=MAX_LOGIN_FAILS){ $('#login-pw').value=''; $('#login-error').textContent=''; syncLoginBtn(); renderLoginDemo(); return; }
+    const left=MAX_LOGIN_FAILS-n;
+    setLoginError(left<=2?`이메일 또는 비밀번호가 맞지 않아요. ${left}번 더 틀리면 계정이 잠겨요`:'이메일 또는 비밀번호가 맞지 않아요');
+    $('#login-pw').select(); return;
+  }
+  setFailCount(email,0);
+  const keep=$('#login-keep').checked;
+  if(accState(email).mustChange){ pendingLogin={email,userId:acc.userId,keep,oldPw:pw}; $('#login-pw').value=''; setLoginStep('change'); return; }
+  completeLogin(acc.userId,keep);
+  toast(`${nameOf(S.me.id)}님, 로그인했어요`);
+});
+/* 첫 로그인 비밀번호 변경 */
+function pwRules(v){ return {len:v.length>=8, mix:/[A-Za-z]/.test(v)&&/\d/.test(v)}; }
+function syncPwc(){
+  const v=$('#pwc-new').value, c=$('#pwc-confirm').value, r=pwRules(v);
+  $$('#pwc-rules li').forEach(li=>li.classList.toggle('ok',!!r[li.dataset.rule]));
+  $('#pwc-submit').disabled=!(r.len&&r.mix&&c);
+}
+$('#pwc-form').addEventListener('input',()=>{ $('#pwc-error').textContent=''; $('#pwc-new').classList.remove('is-error'); $('#pwc-confirm').classList.remove('is-error'); syncPwc(); });
+$('#pwc-form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const btn=$('#pwc-submit'); if(btn.disabled||!pendingLogin) return;
+  const v=$('#pwc-new').value, c=$('#pwc-confirm').value;
+  const err=(msg,id)=>{ $('#pwc-error').textContent=msg; $('#'+id).classList.add('is-error'); $('#'+id).select(); };
+  if(v===pendingLogin.oldPw) return err('임시 비밀번호와 다른 비밀번호를 정해 주세요','pwc-new');
+  if(v!==c) return err('새 비밀번호와 확인이 서로 달라요','pwc-confirm');
+  setBtnLoading(btn,true);
+  await new Promise(r=>setTimeout(r,600)); // TODO(API): POST /auth/password
+  setBtnLoading(btn,false);
+  setAccState(pendingLogin.email,{pw:v,mustChange:false});
+  const {userId,keep}=pendingLogin;
+  completeLogin(userId,keep);
+  toast('비밀번호를 바꿨어요. 다음부터 새 비밀번호로 로그인해 주세요');
+});
+$('#pwc-cancel').addEventListener('click',()=>{ setLoginStep('login'); $('#login-pw').value=''; syncLoginBtn(); $('#login-pw').focus(); });
+async function logout(){
+  if(!(await dialog({title:'로그아웃할까요?',primary:'로그아웃'}))) return;
+  clearSession(); route();
+}
+document.addEventListener('click',e=>{ if(e.target.closest('[data-logout]')) logout(); });
+
 function route(){
   const h=(location.hash||'').replace(/^#/,'');
+  const sess=getSession();
+  if(!sess){ showLogin(); return; }
+  if(S.me.demo && sess.userId!==S.me.id){ const p=byId(DEMO_USERS,sess.userId); if(p){ S.me={id:p.id,name:p.name,isAdmin:p.role==='admin',demo:true,av:p.av}; LS.set('fbp:persona',p.id); renderUnread(); renderSyncBar(); } }
+  loginEl.hidden=true; document.title='피드백 포인트';
   if(/^admin/.test(h)){
     S.admin.route=['admin','admin-list','admin-clients','admin-assignees','admin-memos'].includes(h)?h:'admin';
     if(S.annot.active) stopAnnot(true);
